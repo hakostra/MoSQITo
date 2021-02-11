@@ -10,7 +10,7 @@ import numpy as np
 import math
 
 # Local import
-from mosqito.functions.shared.conversion import *
+from mosqito.functions.shared.conversion import freq2erb, freq2bark
 
 def bandspace(scale,fmin, fmax, bw, hitme=[]):
     """
