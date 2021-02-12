@@ -64,11 +64,13 @@ def bark2freq(bark_axis):
                frequencies converted in Hertz
     
     """
-    if any(bark_axis)<0 :
-        raise ValueError(
-            """ERROR: Frequency in Bark shall be > 0 """
-        )
-
+    if len(bark_axis) > 1:
+        bark_axis = np.array(bark_axis)        
+        if bark_axis.any() < 0:
+            raise ValueError('Bark frequencies must be > 0')
+    else:
+        if bark_axis < 0:
+            raise ValueError('Bark frequency must be > 0')
     
     xp = np.arange(0,25,0.5)        
     
@@ -98,10 +100,13 @@ def freq2bark(freq_axis):
               frequencies converted in Bark
     
     """
-    if any(freq_axis)<0 :
-        raise ValueError(
-            """ERROR: Frequency in Hertz shall be > 0 """
-        )
+    if len(freq_axis) > 1:
+        freq_axis = np.array(freq_axis)        
+        if freq_axis.any() < 0:
+            raise ValueError('Frequencies in Hertz must be > 0')
+    else:
+        if freq_axis < 0:
+            raise ValueError('Frequency in Hertz must be > 0')
 
     
     xp = np.array([   0,    50,   100,   150,   200,   250,   300,   350,   400,
@@ -118,20 +123,20 @@ def freq2bark(freq_axis):
 #------------------------------Hertz <-> ERB----------------------------------
 
 
-def erb2freq(freq_axis):
+def erb2freq(erb_axis):
     """ Conversion of a frequency f from Hertz to ERB 
     
     Formula given by Glasberg and Moore in 1990 """
     
-    if any(freq_axis)<0 :
-        raise ValueError(
-            """ERROR: Frequency in ERB shall be > 0 """
-        )
-    if len(freq_axis)>1:
-        # in case of a frequency vector, numpy is needed to facilitate the computation
-        freq_axis = np.array(freq_axis)
+    if len(erb_axis) > 1:
+        erb_axis = np.array(erb_axis)        
+        if erb_axis.any() < 0:
+            raise ValueError('Frequencies in ERB must be > 0')
+    else:
+        if erb_axis < 0:
+            raise ValueError('Frequency in ERB must be > 0')
 
-    return 229 * (10**(freq_axis / 21.4) - 1)
+    return 229 * (10**(erb_axis / 21.4) - 1)
 
 
 def freq2erb(freq_axis):
@@ -139,13 +144,13 @@ def freq2erb(freq_axis):
     
     Formula given by Glasberg and Moore in 1990 """
     
-    if any(freq_axis)<0 :
-        raise ValueError(
-            """ERROR: Frequency in Hertz shall be > 0 """
-        )
-    if len(freq_axis)>1:
-        # in case of a frequency vector, numpy is needed to facilitate the computation
-        freq_axis = np.array(freq_axis)
+    if len(freq_axis) > 1:
+        freq_axis = np.array(freq_axis)        
+        if freq_axis.any() < 0:
+            raise ValueError('Frequencies in Hertz must be > 0')
+    else:
+        if freq_axis < 0:
+            raise ValueError('Frequency in Hertz must be > 0')
 
     return 21.4 * np.log10(1 + freq_axis/229)
 

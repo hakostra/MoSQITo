@@ -60,4 +60,4 @@ def bandspace(scale,fmin, fmax, bw, hitme=[]):
     # Add the final point
     n = n+1
   
-    return freqs, n
+    return freq_points, n

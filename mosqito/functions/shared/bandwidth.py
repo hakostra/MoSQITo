@@ -5,6 +5,8 @@ Created on Tue Feb  9 15:12:05 2021
 @author: wantysal
 """
 
+import numpy as np
+
 def bandwidth(fc, bandtype):
     """
         Calculate the critical bandwidth of the Bark or ERB band centered on fc
@@ -38,6 +40,15 @@ def bandwidth(fc, bandtype):
         
         
     """
+    
+    # Check the inputs
+    if len(fc) > 1:
+        fc = np.array(fc)        
+        if fc.any() < 0:
+            raise ValueError('Center frequencies must be > 0')
+    else:
+        if fc < 0 :
+            raise ValueError('Center frequency must be > 0')
 
     if bandtype == 'erb':
         bw = 24.7 + fc/9.265
