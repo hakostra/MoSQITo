@@ -18,23 +18,23 @@ def butterworth_filter(signal, fs, order,filter_type, cutoff, cascade):
     Parameters
     ----------
     signal : numpy.array
-        DESCRIPTION.
-    fs : TYPE
-        DESCRIPTION.
-    order : TYPE
-        DESCRIPTION.
-    filter_type : TYPE
-        'lowpass', 'highpass','bandpass','bandstop'
-    cutoff : TYPE
-        DESCRIPTION.
-    cascade : TYPE
-        DESCRIPTION.
+        acoustic signal to be filtered.
+    fs : integer
+        sampling frequency.
+    order : integer
+        order of the filter.
+    filter_type : string
+        type of the filter to use : 'lowpass', 'highpass','bandpass','bandstop'
+    cutoff : float
+         cut-off frequency of the filter.
+    cascade : integer
+        to cascade the filter, it is played cascade times.
 
 
     Returns
     -------
-    outsig : TYPE
-        DESCRIPTION.
+    outsig : numpy.array
+        filtered signal.
 
     """
     
